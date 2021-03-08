@@ -1,17 +1,38 @@
 package br.pucrs.alav;
+import java.awt.image.AreaAveragingScaleFilter;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class RecursionExec7 {
     public static  void main (String args[]){
         Scanner in = new Scanner(System.in);
 
-        System.out.println("digite um valor para M: ");
-        float m_value = in.nextInt();
+        ArrayList<Integer> lista = new ArrayList<Integer>();
+        int opcao = 0;
+        while(true){
+            System.out.println("preencha o vetor com numeros inteiros, use -1 para finalizar o programa");
+            opcao = in.nextInt();
+            if(opcao == -1) break;
+            lista.add(opcao);
+        }
+        somaProduto(lista);
+    }
 
-        System.out.println("digite um valor para N: ");
-        float n_value = in.nextInt();
+    public static void somaProduto(ArrayList<Integer> lista){
+        System.out.println("Valor da soma de todos os itens da lista = " + soma(lista, 0));
+        System.out.println("Valor do produto de todos os itens da lista = " + produto(lista, 0));
+    }
 
-        //float result = Ackerman(m_value,n_value);
+    private static int soma(ArrayList<Integer> lista, int index){
+        if(index == lista.size() - 1){
+            return lista.get(index);
+        }
+        return lista.get(index) + soma(lista, index + 1);
+    }
 
-        //System.out.printf("O resultado de Ackerman(%.0f,%.0f) = %.0f",m_value,n_value,result);
+    private static int produto(ArrayList<Integer> lista, int index){
+        if(index == lista.size() - 1){
+            return lista.get(index);
+        }
+        return lista.get(index) * produto(lista, index + 1);
     }
 }
